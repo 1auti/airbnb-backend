@@ -1,0 +1,69 @@
+  # Application configuration
+  spring:
+    profiles:
+      active: dev
+    application:
+      name: airbnb-clone-back
+
+    # Database configuration
+    datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      url: jdbc:postgresql://localhost:5432/prueba
+      username: postgres
+      password: admin
+      hikari:
+        poolName: Hikari
+        auto-commit: false
+
+    # JPA configuration
+    jpa:
+      open-in-view: false
+      hibernate:
+        ddl-auto: validate
+      properties:
+        hibernate:
+          default_schema: airbnb_clone
+
+    # Data repositories configuration
+    data:
+      jpa:
+        repositories:
+          bootstrap-mode: deferred
+
+    # Liquibase configuration
+    liquibase:
+      contexts: dev
+      change-log: classpath:db/changelog/master.xml
+      default-schema: airbnb_clone
+      enabled: true
+      # drop-first: true
+
+    # File upload configuration
+    servlet:
+      multipart:
+        enabled: true
+        max-file-size: 100MB
+        max-request-size: 100MB
+
+  # Server configuration
+  server:
+    port: 8080
+
+  # Logging configuration
+  logging:
+    level:
+      ROOT: INFO
+      org.hibernate.SQL: DEBUG
+      fr.codecake.airbnbcloneback: DEBUG
+
+  # OAuth2 configuration
+  okta:
+    oauth2:
+      issuer: https://dev-3dna26xp225l6fyx.us.auth0.com/
+      client-id: tw1gqGTKyUnuIQWi1fSjHiSR2OTgyuNJ
+      client-secret: 4EqXwIq6S0NRV-FoAn0SyrSP_Tb3AkaxP9ErrtwbEPG9ETN__0X5Ry_DYtokLgiL
+
+  # Custom application properties
+  application:
+    auth0:
+      role-landlord-id: rol_BzWoceJ6WQxBxuKD

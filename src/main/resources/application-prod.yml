@@ -1,0 +1,18 @@
+logging:
+  level:
+    ROOT: info
+    org.hibernate.SQL: INFO
+    fr.codecake.airbnbcloneback: INFO
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/prueba
+    username: postgres
+    password: admin
+  jpa:
+    properties:
+      hibernate:
+        default_schema: airbnb_clone
+  liquibase:
+    contexts: prod
+    default-schema: airbnb_clone
